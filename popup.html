@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShortCuts</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; 
+      padding: 15px; 
+      width: 350px;
+      font-size: 14px;
+    }
+    input, button { 
+      margin: 5px 0; 
+      width: 100%; 
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .shortcut { 
+      margin-bottom: 15px; 
+      border-bottom: 1px solid #eee; 
+      padding-bottom: 10px; 
+    }
+    .key-display { 
+      background: #f5f5f5; 
+      padding: 3px 6px; 
+      border-radius: 3px; 
+      font-family: monospace; 
+      font-weight: bold;
+    }
+    .platform-select { 
+      margin: 10px 0; 
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+    }
+    #message { 
+      color: #e74c3c; 
+      margin: 5px 0; 
+      min-height: 20px;
+    }
+    .success { 
+      color: #2ecc71 !important; 
+    }
+    .shortcut-actions { 
+      margin-top: 8px; 
+      display: flex;
+      gap: 5px;
+    }
+    .prefix-label { 
+      display: inline-block; 
+      width: 120px; 
+      font-weight: bold;
+    }
+    h3 {
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 8px;
+      margin-top: 15px;
+    }
+    .debug-section {
+      margin-top: 20px;
+      border-top: 1px dashed #ccc;
+      padding-top: 10px;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+    .shortcut a {
+      color: #2980b9;
+      word-break: break-all;
+    }
+    .test-btn {
+      background-color: #27ae60;
+    }
+    .test-btn:hover {
+      background-color: #219653;
+    }
+    .debug-output {
+      max-height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 11px;
+      background-color: #f8f9fa;
+      padding: 5px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .testing-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .testing-buttons button {
+      flex: 1;
+    }
+    .arc-note {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Register Shortcut</h3>
+  
+  <div class="arc-note">
+    <strong>Arc Browser Note:</strong> After registering shortcuts, please refresh the page where you want to use them. Arc may require this extra step for shortcuts to work properly.
+  </div>
+  
+  <div class="platform-select">
+    <label><input type="checkbox" id="isMac"> Using macOS (⌘+Shift+Key)</label>
+    <div id="platform-detection" style="font-size: 12px; margin-top: 5px; color: #666;"></div>
+  </div>
+  <div>
+    <span class="prefix-label" id="prefix-display">Ctrl+Shift+</span>
+    <input type="text" id="key" placeholder="Key (e.g. M)" maxlength="1" style="width: 50px; text-align: center; text-transform: uppercase;" />
+  </div>
+  <input type="text" id="url" placeholder="URL to Open (e.g. https://example.com)" />
+  <button id="register">Register Shortcut</button>
+  <div id="message"></div>
+
+  <h3>Your Shortcuts</h3>
+  <div id="shortcuts"></div>
+  
+  <div class="debug-section">
+    <h4>Testing Tools</h4>
+    <div class="testing-buttons">
+      <button id="test-shortcut" class="test-btn">Test Platform</button>
+      <button id="test-direct-open" class="test-btn">Test URL Open</button>
+      <button id="arc-test" class="test-btn">Arc Test</button>
+    </div>
+    <div id="debug-output" class="debug-output"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
